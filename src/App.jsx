@@ -189,6 +189,28 @@ const App = () => {
       tip: "Use && quando quiser renderizar algo apenas se a condição for verdadeira, e ternário para if/else.",
       category: "Renderização"
     },
+    {
+      title: "Listas com map()",
+      explanation: "Para renderizar listas em React, use o método map() para iterar sobre arrays e retornar elementos JSX para cada item.",
+      code: `function ListaUsuarios({ usuarios }) {\n  return (\n    <ul>\n      {usuarios.map(usuario => (\n        <li key={usuario.id}>\n          {usuario.nome} - {usuario.email}\n        </li>\n      ))}\n    </ul>\n  );\n}`,
+      tip: "Sempre use o map() dentro do JSX com chaves {} e retorne elementos JSX.",
+      category: "Renderização"
+    },
+    {
+      title: "Propriedade key nas listas",
+      explanation: "A prop key é obrigatória ao renderizar listas com map(). Ela ajuda o React a identificar quais itens mudaram, foram adicionados ou removidos.",
+      code: `function ListaProdutos({ produtos }) {\n  return (\n    <div>\n      {produtos.map(produto => (\n        <div key={produto.id}>\n          <h3>{produto.nome}</h3>\n        </div>\n      ))}\n    </div>\n  );\n}\n\n// NUNCA use índice do array como key\n// {itens.map((item, index) => <div key={index}>...</div>)}`,
+      tip: "Use IDs únicos como key. Evite usar índices do array se os itens podem ser reordenados.",
+      category: "Renderização"
+    },
+
+    {
+      title: "O que é useEffect",
+      explanation: "useEffect é um Hook que executa efeitos colaterais em componentes funcionais, como buscar dados, manipular DOM, ou configurar subscriptions.",
+      code: `import { useState, useEffect } from 'react';\n\nfunction ExemploUseEffect() {\n  const [dados, setDados] = useState([]);\n  \n  useEffect(() => {\n    fetch('https://api.exemplo.com/dados')\n      .then(res => res.json())\n      .then(data => setDados(data));\n      \n    return () => {\n      console.log('Limpeza antes de desmontar');\n    };\n  }, []);\n  \n  return <div>{dados.length} itens carregados</div>;\n}`,
+      tip: "useEffect pode ter cleanup function para evitar memory leaks.",
+      category: "Hooks"
+    },
   ]
 return (
     <div className="app">
