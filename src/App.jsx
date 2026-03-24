@@ -1,7 +1,6 @@
 import React from 'react';
 import Card from './assets/components/Card';
 import './App.css';
-import foto from './assets/img/código_jsx_css.png'
 
 const App = () => {
   const cardsData = [
@@ -145,6 +144,28 @@ const App = () => {
       code: `function Botao({ texto = "Clique aqui", cor = "azul" }) {\n  return (\n    <button style={{ backgroundColor: cor }}>\n      {texto}\n    </button>\n  );\n}\n\n// Ou usando defaultProps\n// Botao.defaultProps = { texto: "Clique aqui", cor: "azul" }`,
       tip: "Use parâmetros padrão na desestruturação para definir valores padrão de props.",
       category: "Props"
+    },
+    {
+      title: "Desestruturação de props",
+      explanation: "Desestruturar props permite extrair valores diretamente nos parâmetros da função, tornando o código mais limpo e legível.",
+      code: `// Sem desestruturação\nfunction Card(props) {\n  return <h1>{props.titulo}</h1>;\n}\n\n// Com desestruturação\nfunction Card({ titulo, descricao, imagem }) {\n  return (\n    <div>\n      <h1>{titulo}</h1>\n      <p>{descricao}</p>\n      <img src={imagem} alt={titulo} />\n    </div>\n  );\n}`,
+      tip: "Sempre prefira desestruturar props para facilitar a leitura e evitar repetir props.",
+      category: "Props"
+    },
+
+    {
+      title: "O que é useState",
+      explanation: "useState é um Hook que permite adicionar estado a componentes funcionais. Retorna um array com o valor atual e uma função para atualizá-lo.",
+      code: `import { useState } from 'react';\n\nfunction Contador() {\n  const [contador, setContador] = useState(0);\n  \n  return (\n    <div>\n      <p>Você clicou {contador} vezes</p>\n      <button onClick={() => setContador(contador + 1)}>\n        Clique aqui\n      </button>\n    </div>\n  );\n}`,
+      tip: "useState retorna [valor, funçãoAtualizadora] - use desestruturação para acessar.",
+      category: "State"
+    },
+    {
+      title: "Atualizando estado",
+      explanation: "Para atualizar estado, use a função setter fornecida pelo useState. Nunca modifique o estado diretamente.",
+      code: `function Atualizacao() {\n  const [contador, setContador] = useState(0);\n  \n  const incrementar = () => {\n    // Forma correta\n    setContador(contador + 1);\n    \n    // Para estado baseado no estado anterior\n    setContador(prev => prev + 1);\n  };\n  \n  return <button onClick={incrementar}>Clicou {contador} vezes</button>;\n}`,
+      tip: "Use a forma funcional (prev => prev + 1) quando o novo estado depende do anterior.",
+      category: "State"
     },
   ]
 return (
