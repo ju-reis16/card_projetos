@@ -125,6 +125,27 @@ const App = () => {
       tip: "Cada componente pode ter sua própria pasta com arquivo JSX, CSS e testes.",
       category: "Componentes"
     },
+    {
+      title: "O que são props",
+      explanation: "Props (propriedades) são dados passados de um componente pai para um componente filho. São apenas leitura e permitem configurar componentes de forma dinâmica.",
+      code: `function Saudacao({ nome, idade }) {\n  return (\n    <div>\n      <h1>Olá, {nome}!</h1>\n      <p>Você tem {idade} anos</p>\n    </div>\n  );\n}\n\nfunction App() {\n  return <Saudacao nome="Maria" idade={25} />;\n}`,
+      tip: "Props são imutáveis no componente filho. Não tente modificar props diretamente.",
+      category: "Props"
+    },
+    {
+      title: "Passando props",
+      explanation: "Props são passadas como atributos HTML no componente filho. Podem ser strings, números, booleanos, arrays, objetos, funções, etc.",
+      code: `function Lista({ itens, titulo }) {\n  return (\n    <div>\n      <h2>{titulo}</h2>\n      <ul>\n        {itens.map(item => <li key={item}>{item}</li>)}\n      </ul>\n    </div>\n  );\n}\n\nfunction App() {\n  const frutas = ['Maçã', 'Banana', 'Laranja'];\n  return <Lista itens={frutas} titulo="Lista de Frutas" />;\n}`,
+      tip: "Para passar valores JavaScript (arrays, objetos), use {}. Para strings literais, pode usar aspas.",
+      category: "Props"
+    },
+    {
+      title: "Props com valores padrão",
+      explanation: "Podemos definir valores padrão para props usando defaultProps ou parâmetros padrão na desestruturação.",
+      code: `function Botao({ texto = "Clique aqui", cor = "azul" }) {\n  return (\n    <button style={{ backgroundColor: cor }}>\n      {texto}\n    </button>\n  );\n}\n\n// Ou usando defaultProps\n// Botao.defaultProps = { texto: "Clique aqui", cor: "azul" }`,
+      tip: "Use parâmetros padrão na desestruturação para definir valores padrão de props.",
+      category: "Props"
+    },
   ]
 return (
     <div className="app">
