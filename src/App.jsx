@@ -167,6 +167,28 @@ const App = () => {
       tip: "Use a forma funcional (prev => prev + 1) quando o novo estado depende do anterior.",
       category: "State"
     },
+    {
+      title: "Estado em formulários",
+      explanation: "Em formulários, controlamos inputs com estado React, criando componentes controlados onde o valor do input é gerenciado pelo estado.",
+      code: `function Formulario() {\n  const [form, setForm] = useState({ nome: '', email: '' });\n  \n  const handleChange = (e) => {\n    setForm({\n      ...form,\n      [e.target.name]: e.target.value\n    });\n  };\n  \n  return (\n    <form>\n      <input name="nome" value={form.nome} onChange={handleChange} />\n      <input name="email" value={form.email} onChange={handleChange} />\n    </form>\n  );\n}`,
+      tip: "Use o operador spread (...) para manter os outros campos do formulário ao atualizar um.",
+      category: "State"
+    },
+    {
+      title: "Estado com objetos ou arrays",
+      explanation: "Ao trabalhar com objetos ou arrays no estado, sempre crie uma nova cópia ao atualizar, nunca modifique o estado original diretamente.",
+      code: `function ListaTarefas() {\n  const [tarefas, setTarefas] = useState([]);\n  \n  const adicionarTarefa = (novaTarefa) => {\n    // Criando novo array com spread\n    setTarefas([...tarefas, { id: Date.now(), texto: novaTarefa }]);\n  };\n  \n  const removerTarefa = (id) => {\n    // Filtrando para criar novo array sem o item removido\n    setTarefas(tarefas.filter(tarefa => tarefa.id !== id));\n  };\n}`,
+      tip: "Sempre retorne um novo objeto/array ao atualizar estado, nunca mutar o original.",
+      category: "State"
+    },
+
+    {
+      title: "Renderização condicional",
+      explanation: "Podemos renderizar diferentes elementos baseados em condições usando if, operador ternário, ou operador lógico &&.",
+      code: `function Mensagem({ estaLogado }) {\n  return (\n    <div>\n      {estaLogado ? (\n        <h1>Bem-vindo de volta!</h1>\n      ) : (\n        <h1>Por favor, faça login</h1>\n      )}\n      {estaLogado && <p>Seu último acesso foi hoje</p>}\n    </div>\n  );\n}`,
+      tip: "Use && quando quiser renderizar algo apenas se a condição for verdadeira, e ternário para if/else.",
+      category: "Renderização"
+    },
   ]
 return (
     <div className="app">
