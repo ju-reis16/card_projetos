@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './assets/components/Card';
 import './App.css';
+import foto from './assets/img/código_jsx_css.png'
 
 const App = () => {
   const cardsData = [
@@ -47,7 +48,92 @@ const App = () => {
       tip: "Cada arquivo .jsx deve exportar um componente para ser usado em outros lugares.",
       category: "Fundamentos"
     },
-  ]
+    {
+      title: "O que é JSX ?",
+      explanation: "JSX é uma extensão de sintaxe para JavaScript que permite escrever HTML dentro do JavaScript. Ele é usado no React para descrever como a interface deve ser.",
+      code: `const elemento = <h1>Olá, mundo!</h1>;\n\nfunction App() {\n  return <div>{elemento}</div>;\n}`,
+      tip: "JSX não é obrigatório no React, mas é altamente recomendado por ser mais expressivo.",
+      category: "JSX"
+    },
+    {
+      title: "Diferença HTML e JSX ?",
+      explanation: "No JSX usamos className em vez de class, camelCase para atributos (onClick), e todo elemento deve ser fechado (ex: <img />).",
+      code: `// HTML: <div class="container" onclick="funcao">\n// JSX:\n<div className="container" onClick={funcao}>\n  <img src="foto.jpg" alt="foto" />\n</div>`,
+      tip: "Use className para classes CSS e camelCase para eventos como onClick, onChange.",
+      category: "JSX"
+    },
+    {
+      title: "Expressões JSX {}",
+      explanation: "Usamos chaves {} para inserir expressões JavaScript dentro do JSX. Pode ser variáveis, funções, operações matemáticas, etc.",
+      code: `const nome = "João";\nconst idade = 25;\n\nfunction App() {\n  return (\n    <div>\n      <h1>Olá, {nome}!</h1>\n      <p>Idade: {idade + 5} anos</p>\n    </div>\n  );\n}`,
+      tip: "Dentro das chaves {} você pode colocar qualquer expressão JavaScript válida.",
+      category: "JSX"
+    },
+    {
+      title: "Fragment <> </>",
+      explanation: "Fragment é usado para agrupar múltiplos elementos sem adicionar um nó extra no DOM. Pode ser escrito como <></> ou <Fragment></Fragment>.",
+      code: `function App() {\n  return (\n    <>\n      <h1>Título</h1>\n      <p>Parágrafo 1</p>\n    </>\n  );\n}`,
+      tip: "Use Fragment quando precisar retornar múltiplos elementos sem uma div pai desnecessária.",
+      category: "JSX"
+    },
+    {
+      title: "Classes CSS no JSX (className)",
+      explanation: "No JavaScript puro, a palavra class é reservada para criar classes de objetos. Por isso, no JSX, usamos className para aplicar classes de estilo do CSS.",
+      code: `.caixa-azul {
+  background-color: blue;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
 }
+----------------------------
+  function MeuComponente() {
+  return (
+    <div className="caixa-azul">
+      <h1>Este card usa className!</h1>
+    </div>
+  );
+}
+`,
+      category: "JSX"
+    },
+    {
+      title: "O que são componentes ?",
+      explanation: "Componentes são blocos de construção reutilizáveis em React. Eles podem ser funções ou classes que retornam JSX e permitem dividir a UI em partes independentes.",
+      code: `function Saudacao() {\n  return <h1>Olá!</h1>;\n}\n\nfunction App() {\n  return <Saudacao />;\n}`,
+      tip: "Componentes devem começar com letra maiúscula para o React reconhecer como componente.",
+      category: "Componentes"
+    },
+  ]
+return (
+    <div className="app">
+      <div className="legend">
+        <h3> Legenda de Cores por Categoria</h3>
+        <div className="legend-grid">
+          <div className="legend-item"><div className="color-box" style={{ backgroundColor: '#1E88E5' }}></div><span>Fundamentos</span></div>
+          <div className="legend-item"><div className="color-box" style={{ backgroundColor: '#FDD835' }}></div><span>JSX</span></div>
+          <div className="legend-item"><div className="color-box" style={{ backgroundColor: '#8E24AA' }}></div><span>Componentes</span></div>
+          <div className="legend-item"><div className="color-box" style={{ backgroundColor: '#43A047' }}></div><span>Props</span></div>
+          <div className="legend-item"><div className="color-box" style={{ backgroundColor: '#C62828' }}></div><span>State</span></div>
+          <div className="legend-item"><div className="color-box" style={{ backgroundColor: '#EC407A' }}></div><span>Renderização</span></div>
+          <div className="legend-item"><div className="color-box" style={{ backgroundColor: '#FB8C00' }}></div><span>Hooks</span></div>
+          <div className="legend-item"><div className="color-box" style={{ backgroundColor: '#00ACC1' }}></div><span>Conceitos Extras</span></div>
+        </div>
+      </div>
+
+      <div className="cards-container">
+        {cardsData.map((item, index) => (
+          <Card
+            key={index}
+            title={item.title}
+            explanation={item.explanation}
+            code={item.code}
+            tip={item.tip}
+            category={item.category}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default App;
