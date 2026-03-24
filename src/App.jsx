@@ -47,6 +47,27 @@ const App = () => {
       tip: "Cada arquivo .jsx deve exportar um componente para ser usado em outros lugares.",
       category: "Fundamentos"
     },
+    {
+      title: "O que é JSX ?",
+      explanation: "JSX é uma extensão de sintaxe para JavaScript que permite escrever HTML dentro do JavaScript. Ele é usado no React para descrever como a interface deve ser.",
+      code: `const elemento = <h1>Olá, mundo!</h1>;\n\nfunction App() {\n  return <div>{elemento}</div>;\n}`,
+      tip: "JSX não é obrigatório no React, mas é altamente recomendado por ser mais expressivo.",
+      category: "JSX"
+    },
+    {
+      title: "Diferença HTML e JSX ?",
+      explanation: "No JSX usamos className em vez de class, camelCase para atributos (onClick), e todo elemento deve ser fechado (ex: <img />).",
+      code: `// HTML: <div class="container" onclick="funcao">\n// JSX:\n<div className="container" onClick={funcao}>\n  <img src="foto.jpg" alt="foto" />\n</div>`,
+      tip: "Use className para classes CSS e camelCase para eventos como onClick, onChange.",
+      category: "JSX"
+    },
+    {
+      title: "Expressões JSX {}",
+      explanation: "Usamos chaves {} para inserir expressões JavaScript dentro do JSX. Pode ser variáveis, funções, operações matemáticas, etc.",
+      code: `const nome = "João";\nconst idade = 25;\n\nfunction App() {\n  return (\n    <div>\n      <h1>Olá, {nome}!</h1>\n      <p>Idade: {idade + 5} anos</p>\n    </div>\n  );\n}`,
+      tip: "Dentro das chaves {} você pode colocar qualquer expressão JavaScript válida.",
+      category: "JSX"
+    },
   ]
 }
 
