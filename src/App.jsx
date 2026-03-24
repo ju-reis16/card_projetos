@@ -103,6 +103,28 @@ const App = () => {
       tip: "Componentes devem começar com letra maiúscula para o React reconhecer como componente.",
       category: "Componentes"
     },
+
+     {
+      title: "Criando componente funcional",
+      explanation: "Um componente funcional é uma função JavaScript que retorna JSX. Pode receber props como parâmetro e é a forma mais moderna de criar componentes.",
+      code: `function MeuComponente({ nome }) {\n  return (\n    <div>\n      <h2>Componente de {nome}</h2>\n      <p>Este é um componente funcional</p>\n    </div>\n  );\n}\n\nexport default MeuComponente;`,
+      tip: "Use arrow functions também: const MeuComponente = () => { return <div /> }",
+      category: "Componentes"
+    },
+    {
+      title: "Reutilização de componentes",
+      explanation: "Componentes podem ser reutilizados quantas vezes forem necessárias com diferentes props, evitando código duplicado e facilitando a manutenção.",
+      code: `function Card({ titulo, conteudo }) {\n  return (\n    <div className="card">\n      <h3>{titulo}</h3>\n      <p>{conteudo}</p>\n    </div>\n  );\n}\n\nfunction App() {\n  return (\n    <div>\n      <Card titulo="Card 1" conteudo="Conteúdo 1" />\n      <Card titulo="Card 2" conteudo="Conteúdo 2" />\n      <Card titulo="Card 3" conteudo="Conteúdo 3" />\n    </div>\n  );\n}`,
+      tip: "Componentes bem feitos são reutilizáveis e independentes.",
+      category: "Componentes"
+    },
+    {
+      title: "Organização de pastas",
+      explanation: "Organize componentes em pastas específicas dentro de src/. Use componentes/ para componentes reutilizáveis, pages/ para páginas, e features/ para funcionalidades específicas.",
+      code: `src/\n├── components/\n│   ├── Button/\n│   │   ├── Button.jsx\n│   │   └── Button.css\n│   └── Card/\n│       └── Card.jsx\n├── pages/\n│   ├── Home.jsx\n│   └── About.jsx\n└── App.jsx`,
+      tip: "Cada componente pode ter sua própria pasta com arquivo JSX, CSS e testes.",
+      category: "Componentes"
+    },
   ]
 return (
     <div className="app">
