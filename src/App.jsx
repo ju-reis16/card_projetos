@@ -211,6 +211,28 @@ const App = () => {
       tip: "useEffect pode ter cleanup function para evitar memory leaks.",
       category: "Hooks"
     },
+    {
+      title: "Ciclo de vida básico",
+      explanation: "useEffect substitui os métodos de ciclo de vida de componentes de classe: componentDidMount, componentDidUpdate e componentWillUnmount.",
+      code: `useEffect(() => {\n  // componentDidMount + componentDidUpdate\n  console.log('Montou ou atualizou');\n  \n  return () => {\n    // componentWillUnmount\n    console.log('Vai desmontar');\n  };\n}, [dependencia]);\n\n// componentDidMount: useEffect(() => {}, [])\n// componentDidUpdate: useEffect(() => {}, [dependencia])\n// componentWillUnmount: return () => {} dentro do useEffect`,
+      tip: "Pense em useEffect em termos de sincronização, não apenas em ciclo de vida.",
+      category: "Hooks"
+    },
+    {
+      title: "Dependências do useEffect",
+      explanation: "O array de dependências controla quando o useEffect é executado. Sem array: executa toda renderização. Array vazio: executa uma vez. Com dependências: executa quando mudam.",
+      code: `function Componente({ userId }) {\n  // Executa em toda renderização (evitar!)\n  useEffect(() => {\n    console.log('Executa sempre');\n  });\n  \n  // Executa apenas na montagem\n  useEffect(() => {\n    console.log('Executa uma vez');\n  }, []);\n  \n  // Executa quando userId muda\n  useEffect(() => {\n    fetchUser(userId).then(setUser);\n  }, [userId]);\n}`,
+      tip: "Sempre inclua todas as dependências usadas dentro do useEffect no array de dependências.",
+      category: "Hooks"
+    },
+
+    {
+      title: "Comunicação pai → filho",
+      explanation: "A comunicação entre componentes acontece passando props do componente pai para o filho. O pai pode passar dados e funções para o filho.",
+      code: `function Filho({ mensagem, aoClicar }) {\n  return (\n    <div>\n      <p>{mensagem}</p>\n      <button onClick={aoClicar}>Clique aqui</button>\n    </div>\n  );\n}\n\nfunction Pai() {\n  const [contador, setContador] = useState(0);\n  \n  const handleClique = () => {\n    setContador(contador + 1);\n  };\n  \n  return (\n    <div>\n      <h1>Contador: {contador}</h1>\n      <Filho \n        mensagem="Clique no botão abaixo"\n        aoClicar={handleClique}\n      />\n    </div>\n  );\n}`,
+      tip: "Para comunicação filho → pai, passe funções como props do pai para o filho.",
+      category: "Conceitos Extras"
+    }
   ]
 return (
     <div className="app">
